@@ -105,14 +105,14 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
     inc_x_value +=1;
     x_value.append(inc_x_value);
 
-   /* if(x_value.capacity() >= 100){
+    if(x_value.capacity() >= 5000){
         vibration_y_value.clear();
         x_axis_clk_y_value.clear();
         x_axis_aclk_y_value.clear();
         y_axis_clk_y_value.clear();
         y_axis_aclk_y_value.clear();
         x_value.clear();
-    } */
+    }
 
     vibration_y_value.append(vibration);
     x_axis_clk_y_value.append(x_clockwise);

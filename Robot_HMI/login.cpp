@@ -2,6 +2,7 @@
 #include "ui_login.h"
 
 #include <QMessageBox>
+#include <QDesktopWidget>
 
 LogIn::LogIn(QWidget *parent)
     : QMainWindow(parent)
@@ -45,5 +46,18 @@ void LogIn::on_pushButton_login_clicked()
   */
     hide();
     dashboard = new Dashboard(this);
+    QDesktopWidget *desktop = QApplication::desktop();
+
+    int WIDTH = 820;
+    int HEIGHT = 480;
+
+    int screenWidth = desktop->width();
+    int screenHeight = desktop->height();
+
+    int x = (screenWidth - WIDTH) / 2;
+    int y = (screenHeight - HEIGHT) / 2;
+
+    dashboard->resize(WIDTH, HEIGHT);
+    dashboard->move( x, y );
     dashboard->show();
 }
