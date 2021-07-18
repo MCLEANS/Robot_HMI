@@ -9,6 +9,8 @@ LogIn::LogIn(QWidget *parent)
     , ui(new Ui::LogIn)
 {
     ui->setupUi(this);
+    ui->lineEdit_username->setText(USERNAME);
+    ui->lineEdit_password->setText(PASSWORD);
 }
 
 LogIn::~LogIn()
@@ -19,7 +21,7 @@ LogIn::~LogIn()
 
 void LogIn::on_pushButton_login_clicked()
 {
-    /*
+
     if((ui->lineEdit_username->text().isEmpty()) || (ui->lineEdit_password->text().isEmpty())){
         QMessageBox::warning(this,
                              "Required Field",
@@ -31,6 +33,19 @@ void LogIn::on_pushButton_login_clicked()
         if((ui->lineEdit_username->text() == USERNAME) && (ui->lineEdit_password->text() == PASSWORD)){
             hide();
             dashboard = new Dashboard(this);
+            QDesktopWidget *desktop = QApplication::desktop();
+
+            int WIDTH = 820;
+            int HEIGHT = 480;
+
+            int screenWidth = desktop->width();
+            int screenHeight = desktop->height();
+
+            int x = (screenWidth - WIDTH) / 2;
+            int y = (screenHeight - HEIGHT) / 2;
+
+            dashboard->resize(WIDTH, HEIGHT);
+            dashboard->move( x, y );
             dashboard->show();
         }
         else{
@@ -43,21 +58,4 @@ void LogIn::on_pushButton_login_clicked()
             ui->lineEdit_password->clear();
         }
     }
-  */
-    hide();
-    dashboard = new Dashboard(this);
-    QDesktopWidget *desktop = QApplication::desktop();
-
-    int WIDTH = 820;
-    int HEIGHT = 480;
-
-    int screenWidth = desktop->width();
-    int screenHeight = desktop->height();
-
-    int x = (screenWidth - WIDTH) / 2;
-    int y = (screenHeight - HEIGHT) / 2;
-
-    dashboard->resize(WIDTH, HEIGHT);
-    dashboard->move( x, y );
-    dashboard->show();
 }
