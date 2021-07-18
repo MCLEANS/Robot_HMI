@@ -50,7 +50,6 @@ Dashboard::Dashboard(QWidget *parent) :
 
 void Dashboard::fetch_data(){
     QNetworkRequest request;
-    QNetworkAccessManager* naManager = new QNetworkAccessManager(this);
     QMetaObject::Connection connRet = QObject::connect(naManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinished(QNetworkReply*)));
     Q_ASSERT(connRet);
 

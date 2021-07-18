@@ -28,6 +28,7 @@ private slots:
 
 private:
     Ui::Dashboard *ui;
+    QNetworkAccessManager* naManager = new QNetworkAccessManager(this);
     int inc_x_value = 0;
 
     QVector<double> vibration_y_value;
