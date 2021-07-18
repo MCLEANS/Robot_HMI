@@ -109,9 +109,9 @@ void Dashboard::requestFinished(QNetworkReply* reply) {
 
 void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int y_anticlockwise, int vibration, int noise){
     inc_x_value +=1;
-    x_value.append(inc_x_value);
-/*
-    if(x_value.capacity() >= 5000){
+
+
+    if(x_value.size() == 100){
         vibration_y_value.clear();
         x_axis_clk_y_value.clear();
         x_axis_aclk_y_value.clear();
@@ -119,7 +119,8 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
         y_axis_aclk_y_value.clear();
         x_value.clear();
     }
-*/
+
+    x_value.append(inc_x_value);
     vibration_y_value.append(vibration);
     x_axis_clk_y_value.append(x_clockwise);
     x_axis_aclk_y_value.append(x_anticlockwise);
@@ -128,7 +129,8 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
 
     /* Robot vibration plot */
     ui->plot_vibration->graph(0)->setData(x_value,vibration_y_value);
-    ui->plot_vibration->xAxis->setRange(inc_x_value-20, inc_x_value);
+    ui->plot_vibration->xAxis->setRange(inc_x_value-20, inc_x_value+20);
+   // else ui->plot_vibration->xAxis->setRange(inc_x_value-20, inc_x_value);
     ui->plot_vibration->yAxis->setRange(0, 1000);
     ui->plot_vibration->yAxis->setLabel("Amplitude");
     ui->plot_vibration->xAxis->setLabel("VIBRATION");
@@ -138,7 +140,7 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
     /* Robot x axis plot */
     ui->plot_x_axis->graph(0)->setData(x_value,x_axis_clk_y_value);
     ui->plot_x_axis->graph(0)->setPen(QPen(Qt::blue));
-    ui->plot_x_axis->xAxis->setRange(inc_x_value-20, inc_x_value);
+    ui->plot_x_axis->xAxis->setRange(inc_x_value, inc_x_value);
     ui->plot_x_axis->yAxis->setRange(0, 100);
     //ui->plot_x_axis->graph(0)->rescaleAxes();
 
