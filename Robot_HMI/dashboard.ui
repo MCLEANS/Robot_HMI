@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>780</width>
-    <height>450</height>
+    <width>820</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>13</x>
       <y>11</y>
-      <width>371</width>
-      <height>391</height>
+      <width>381</width>
+      <height>441</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -35,10 +35,10 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>400</x>
       <y>10</y>
-      <width>381</width>
-      <height>391</height>
+      <width>411</width>
+      <height>441</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -46,11 +46,11 @@
       <widget class="QPushButton" name="pushButton">
        <property name="font">
         <font>
-         <pointsize>15</pointsize>
+         <pointsize>11</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>McTech Solutions HMI</string>
+        <string>McTech Solutions HMI (By: Jack McLeans)</string>
        </property>
       </widget>
      </item>
@@ -58,6 +58,11 @@
       <layout class="QFormLayout" name="formLayout">
        <item row="0" column="0">
         <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>HTTP RESPONSE </string>
          </property>
@@ -68,6 +73,11 @@
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>HTTP STATUS</string>
          </property>
@@ -76,18 +86,13 @@
        <item row="1" column="1">
         <widget class="QLineEdit" name="lineEdit_status"/>
        </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>MACHINE HEALTH</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_health"/>
-       </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>NETWORK STATUS</string>
          </property>
@@ -95,6 +100,21 @@
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="lineEdit_network"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>MACHINE HEALTH</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEdit_health"/>
        </item>
       </layout>
      </item>
@@ -109,7 +129,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>780</width>
+     <width>820</width>
      <height>22</height>
     </rect>
    </property>
