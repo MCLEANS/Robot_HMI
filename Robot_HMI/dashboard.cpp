@@ -110,14 +110,14 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
     inc_x_value +=1;
 
 
-    if(x_value.size() == 100){
+  /*  if(x_value.size() == 100){
         vibration_y_value.clear();
         x_axis_clk_y_value.clear();
         x_axis_aclk_y_value.clear();
         y_axis_clk_y_value.clear();
         y_axis_aclk_y_value.clear();
         x_value.clear();
-    }
+    } */
 
     x_value.append(inc_x_value);
     vibration_y_value.append(vibration);
@@ -128,7 +128,7 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
 
     /* Robot vibration plot */
     ui->plot_vibration->graph(0)->setData(x_value,vibration_y_value);
-    ui->plot_vibration->xAxis->setRange(inc_x_value-20, inc_x_value+20);
+    ui->plot_vibration->xAxis->setRange(inc_x_value-20, inc_x_value);
    // else ui->plot_vibration->xAxis->setRange(inc_x_value-20, inc_x_value);
     ui->plot_vibration->yAxis->setRange(0, 500);
     ui->plot_vibration->yAxis->setLabel("Amplitude");
