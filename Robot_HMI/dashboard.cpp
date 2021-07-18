@@ -146,7 +146,7 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
     ui->plot_x_axis->graph(1)->setData(x_value,x_axis_aclk_y_value);
     ui->plot_x_axis->graph(1)->setPen(QPen(Qt::red));
     ui->plot_x_axis->yAxis->setLabel("Tilt Angle (degrees)");
-    ui->plot_x_axis->xAxis->setLabel("ROBOR X AXIS");
+    ui->plot_x_axis->xAxis->setLabel("ROBOT X AXIS");
     //ui->plot_x_axis->graph(1)->rescaleAxes();
     ui->plot_x_axis->replot();
     ui->plot_x_axis->update();
