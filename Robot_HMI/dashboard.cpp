@@ -100,8 +100,7 @@ void Dashboard::requestFinished(QNetworkReply* reply) {
          }
         else{
           // ui->label_response->setText(result["_id"].toString());
-            plot(qrand() % 90,qrand() % 90,qrand() % 90,qrand() % 90,qrand() % 700,0);
-
+            plot(qrand() % 20,qrand() % 20,qrand() % 20,qrand() % 20,qrand() % 300,0);
            }
         }
     reply->deleteLater();
@@ -131,7 +130,7 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
     ui->plot_vibration->graph(0)->setData(x_value,vibration_y_value);
     ui->plot_vibration->xAxis->setRange(inc_x_value-20, inc_x_value+20);
    // else ui->plot_vibration->xAxis->setRange(inc_x_value-20, inc_x_value);
-    ui->plot_vibration->yAxis->setRange(0, 1000);
+    ui->plot_vibration->yAxis->setRange(0, 500);
     ui->plot_vibration->yAxis->setLabel("Amplitude");
     ui->plot_vibration->xAxis->setLabel("VIBRATION");
     ui->plot_vibration->replot();
@@ -140,14 +139,12 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
     /* Robot x axis plot */
     ui->plot_x_axis->graph(0)->setData(x_value,x_axis_clk_y_value);
     ui->plot_x_axis->graph(0)->setPen(QPen(Qt::blue));
-    ui->plot_x_axis->xAxis->setRange(inc_x_value, inc_x_value);
-    ui->plot_x_axis->yAxis->setRange(0, 100);
+    ui->plot_x_axis->xAxis->setRange(inc_x_value-20, inc_x_value);
+    ui->plot_x_axis->yAxis->setRange(0, 25);
     //ui->plot_x_axis->graph(0)->rescaleAxes();
 
     ui->plot_x_axis->graph(1)->setData(x_value,x_axis_aclk_y_value);
     ui->plot_x_axis->graph(1)->setPen(QPen(Qt::red));
-    ui->plot_x_axis->xAxis->setRange(inc_x_value-20, inc_x_value);
-    ui->plot_x_axis->yAxis->setRange(0, 100);
     ui->plot_x_axis->yAxis->setLabel("Tilt Angle (degrees)");
     ui->plot_x_axis->xAxis->setLabel("ROBOR X AXIS");
     //ui->plot_x_axis->graph(1)->rescaleAxes();
@@ -158,13 +155,11 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
     ui->plot_y_axis->graph(0)->setData(x_value,y_axis_clk_y_value);
     ui->plot_y_axis->graph(0)->setPen(QPen(Qt::blue));
     ui->plot_y_axis->xAxis->setRange(inc_x_value-20, inc_x_value);
-    ui->plot_y_axis->yAxis->setRange(0, 100);
+    ui->plot_y_axis->yAxis->setRange(0, 25);
     //ui->plot_y_axis->graph(0)->rescaleAxes();
 
     ui->plot_y_axis->graph(1)->setData(x_value,y_axis_aclk_y_value);
     ui->plot_y_axis->graph(1)->setPen(QPen(Qt::red));
-    ui->plot_y_axis->xAxis->setRange(inc_x_value-20, inc_x_value);
-    ui->plot_y_axis->yAxis->setRange(0, 100);
     //ui->plot_y_axis->graph(1)->rescaleAxes();
     ui->plot_y_axis->yAxis->setLabel("Tilt Angle (degrees)");
     ui->plot_y_axis->xAxis->setLabel("ROBOT Y AXIS");
