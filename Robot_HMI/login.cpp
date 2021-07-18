@@ -48,7 +48,7 @@ void LogIn::on_pushButton_login_clicked()
     dashboard = new Dashboard(this);
     QDesktopWidget *desktop = QApplication::desktop();
 
-    int WIDTH = 820;
+    int WIDTH = 800;
     int HEIGHT = 480;
 
     int screenWidth = desktop->width();
