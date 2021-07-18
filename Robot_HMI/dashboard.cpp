@@ -62,26 +62,32 @@ void Dashboard::requestFinished(QNetworkReply* reply) {
     QVariant statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     /* Check if the status code is valid */
     if(statusCode.isValid()){
+        ui->lineEdit_response->setStyleSheet("color: green");
         ui->lineEdit_response->setText(statusCode.toString());
     }
     else{
-        ui->lineEdit_response->setText("Invalid Response");
+        ui->lineEdit_response->setStyleSheet("color: red");
+        ui->lineEdit_response->setText("INVALID RESPONSE");
     }
 
     QVariant reason = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
     /* Check for the status reason */
     if(reason.isValid()){
+        ui->lineEdit_status->setStyleSheet("color: green");
         ui->lineEdit_status->setText(reason.toString());
     }
     else{
-       ui->lineEdit_status->setText("Invalid status");
+       ui->lineEdit_status->setStyleSheet("color: red");
+       ui->lineEdit_status->setText("INVALID STATUS");
     }
 
     QNetworkReply::NetworkError err = reply->error();
     if(err != QNetworkReply::NoError) {
+        ui->lineEdit_network->setStyleSheet("color: red");
         ui->lineEdit_network->setText(reply->errorString());
     }
     else {
+        ui->lineEdit_network->setStyleSheet("color: green");
         ui->lineEdit_network->setText("AVAILABLE");
         /* Get the server response */
         QString response = reply->readAll();
@@ -104,7 +110,7 @@ void Dashboard::requestFinished(QNetworkReply* reply) {
 void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int y_anticlockwise, int vibration, int noise){
     inc_x_value +=1;
     x_value.append(inc_x_value);
-
+/*
     if(x_value.capacity() >= 5000){
         vibration_y_value.clear();
         x_axis_clk_y_value.clear();
@@ -113,7 +119,7 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
         y_axis_aclk_y_value.clear();
         x_value.clear();
     }
-
+*/
     vibration_y_value.append(vibration);
     x_axis_clk_y_value.append(x_clockwise);
     x_axis_aclk_y_value.append(x_anticlockwise);
