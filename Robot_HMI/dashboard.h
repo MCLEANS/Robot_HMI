@@ -38,6 +38,8 @@ private:
     QVector<double> y_axis_aclk_y_value;
     QVector<double> x_value;
 
+    QString previous_packet_id = "";
+
     void plot(int x_clockwise,
               int x_anticlockwise,
               int y_clockwise,

@@ -96,12 +96,10 @@ void Dashboard::requestFinished(QNetworkReply* reply) {
         QtJson::JsonObject result = QtJson::parse(response, ok).toMap();
         /* Check whether the parsing process was successful */
         if(!ok) {
-        //  ui->label_response->setText("Error parsing");
          }
         else{
-          // ui->label_response->setText(result["_id"].toString());
-            plot(qrand() % 20,qrand() % 20,qrand() % 20,qrand() % 20,qrand() % 300,0);
-           }
+            plot(result["xClockWise"].toInt(),result["xAntiClockWise"].toInt(),result["yClockWise"].toInt(),result["yAntiClockWise"].toInt(),result["vibration"].toInt(),result["noise"].toInt());
+            }
         }
     reply->deleteLater();
     }
