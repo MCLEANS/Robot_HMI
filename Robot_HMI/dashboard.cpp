@@ -1,6 +1,8 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
 
+#include <QPalette>
+
 Dashboard::Dashboard(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Dashboard)
