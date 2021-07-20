@@ -124,6 +124,7 @@ void Dashboard::requestFinished_thingspeak(QNetworkReply* reply_thingspeak) {
                 /* Change button to green */
                 QPalette pal = ui->pushButton_indicator->palette();
                 pal.setColor(QPalette::Button, QColor(Qt::green));
+                ui->pushButton_indicator->setStyleSheet("border:2px solid #ff0000;");
                 ui->pushButton_indicator->setAutoFillBackground(true);
                 ui->pushButton_indicator->setPalette(pal);
                 ui->pushButton_indicator->update();
@@ -133,11 +134,11 @@ void Dashboard::requestFinished_thingspeak(QNetworkReply* reply_thingspeak) {
                 if(prev_0 == 0 && prev_1 == 0 && prev_2 == 0 && prev_3 == 0 && prev_4 == 0 && prev_5 == 0){
                     QPalette pal = ui->pushButton_indicator->palette();
                     pal.setColor(QPalette::Button, QColor(Qt::red));
+                    ui->pushButton_indicator->setStyleSheet("border:2px solid #ff0000;");
                     ui->pushButton_indicator->setAutoFillBackground(true);
                     ui->pushButton_indicator->setPalette(pal);
                     ui->pushButton_indicator->update();
                 }
-
             }
         }
       }
