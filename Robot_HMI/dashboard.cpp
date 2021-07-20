@@ -14,6 +14,10 @@ Dashboard::Dashboard(QWidget *parent) :
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(fetch_data()));
     timer->start(100); //time specified in ms
 
+    QTimer *timer_1 = new QTimer(this);
+    QObject::connect(timer_1, SIGNAL(timeout()), this, SLOT(fetch_data_thingspeak()));
+    timer_1->start(30000); //time specified in ms
+
     /*
      * Vibration graph
     */
@@ -56,6 +60,87 @@ void Dashboard::fetch_data(){
     request.setUrl(QUrl("https://predict-data-api.herokuapp.com/data/real-time"));
     QNetworkReply* reply = naManager->get(request);
 }
+
+void Dashboard::fetch_data_thingspeak(){
+    qDebug()<<"here";
+    QNetworkRequest request;
+    QMetaObject::Connection connRet = QObject::connect(naManager_1, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinished_thingspeak(QNetworkReply*)));
+    Q_ASSERT(connRet);
+
+    request.setUrl(QUrl("https://api.thingspeak.com/channels/1450251/feeds/last.json?api_key=NRXASN52OX8O60H8&results=2"));
+    QNetworkReply* reply_thingspeak = naManager_1->get(request);
+}
+
+void Dashboard::requestFinished_thingspeak(QNetworkReply* reply_thingspeak) {
+
+    /* Get the http status code */
+    QVariant statusCode = reply_thingspeak->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+    /* Check if the status code is valid */
+    if(statusCode.isValid()){
+        /* valid status */
+    }
+    else{
+        /* Invalud status */
+    }
+
+    QVariant reason = reply_thingspeak->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
+    /* Check for the status reason */
+    if(reason.isValid()){
+       /* Valid reason */
+    }
+    else{
+      /* Invalid reason */
+    }
+
+    QNetworkReply::NetworkError err = reply_thingspeak->error();
+    if(err != QNetworkReply::NoError) {
+        /* Network error */
+    }
+    else {
+        /* Get the server response */
+        QString response = reply_thingspeak->readAll();
+        qDebug()<<response;
+        bool ok;
+        /* Convert response string to JSON object */
+        QtJson::JsonObject result = QtJson::parse(response, ok).toMap();
+        /* Check whether the parsing process was successful */
+        if(!ok) {
+         }
+        else{
+            /* converted to json */
+            int payload = result["field1"].toInt() ;
+            prev_7 = prev_6;
+            prev_6 = prev_5;
+            prev_5 = prev_4;
+            prev_4 = prev_3;
+            prev_3 = prev_2;
+            prev_2 = prev_1;
+            prev_1 = prev_0;
+            prev_0 = payload;
+
+            if( payload == 1){
+                /* Change button to green */
+                QPalette pal = ui->pushButton_indicator->palette();
+                pal.setColor(QPalette::Button, QColor(Qt::green));
+                ui->pushButton_indicator->setAutoFillBackground(true);
+                ui->pushButton_indicator->setPalette(pal);
+                ui->pushButton_indicator->update();
+            }
+            else{
+                /* Change button to red */
+                if(prev_0 == 0 && prev_1 == 0 && prev_2 == 0 && prev_3 == 0 && prev_4 == 0 && prev_5 == 0){
+                    QPalette pal = ui->pushButton_indicator->palette();
+                    pal.setColor(QPalette::Button, QColor(Qt::red));
+                    ui->pushButton_indicator->setAutoFillBackground(true);
+                    ui->pushButton_indicator->setPalette(pal);
+                    ui->pushButton_indicator->update();
+                }
+
+            }
+        }
+      }
+    reply_thingspeak->deleteLater();
+    }
 
 void Dashboard::requestFinished(QNetworkReply* reply) {
     /* Get the http status code */

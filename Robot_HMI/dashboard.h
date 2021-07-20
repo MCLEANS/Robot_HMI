@@ -24,12 +24,26 @@ public:
 
 private slots:
     void requestFinished(QNetworkReply* reply);
+    void requestFinished_thingspeak(QNetworkReply* reply);
     void fetch_data();
+    void fetch_data_thingspeak();
 
 private:
     Ui::Dashboard *ui;
     QNetworkAccessManager* naManager = new QNetworkAccessManager(this);
+    QNetworkAccessManager* naManager_1 = new QNetworkAccessManager(this);
     int inc_x_value = 0;
+
+    int prev_0 = 1;
+    int prev_1 = 1;
+    int prev_2 = 1;
+    int prev_3 = 1;
+    int prev_4 = 1;
+    int prev_5 = 1;
+    int prev_6 = 1;
+    int prev_7 = 1;
+
+
 
     QVector<double> vibration_y_value;
     QVector<double> x_axis_clk_y_value;
