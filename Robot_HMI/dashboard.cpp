@@ -18,7 +18,7 @@ Dashboard::Dashboard(QWidget *parent) :
 
     QTimer *timer_1 = new QTimer(this);
     QObject::connect(timer_1, SIGNAL(timeout()), this, SLOT(fetch_data_thingspeak()));
-    timer_1->start(30000); //time specified in ms
+    timer_1->start(15000); //time specified in ms
 
     /*
      * Vibration graph
