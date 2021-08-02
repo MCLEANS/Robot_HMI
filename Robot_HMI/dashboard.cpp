@@ -16,6 +16,9 @@ Dashboard::Dashboard(QWidget *parent) :
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(fetch_data()));
     timer->start(100); //time specified in ms
 
+    /*
+     * Timer to pull the thingspeak data
+     */
     QTimer *timer_1 = new QTimer(this);
     QObject::connect(timer_1, SIGNAL(timeout()), this, SLOT(fetch_data_thingspeak()));
     timer_1->start(15000); //time specified in ms
@@ -64,7 +67,7 @@ void Dashboard::fetch_data(){
 }
 
 void Dashboard::fetch_data_thingspeak(){
-    qDebug()<<"here";
+    qDebug()<<"Fetching data from ThingSpeak";
     QNetworkRequest request;
     QMetaObject::Connection connRet = QObject::connect(naManager_1, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinished_thingspeak(QNetworkReply*)));
     Q_ASSERT(connRet);
@@ -79,10 +82,10 @@ void Dashboard::requestFinished_thingspeak(QNetworkReply* reply_thingspeak) {
     QVariant statusCode = reply_thingspeak->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     /* Check if the status code is valid */
     if(statusCode.isValid()){
-        /* valid status */
+        /* valid status code */
     }
     else{
-        /* Invalud status */
+        /* Invalid status code */
     }
 
     QVariant reason = reply_thingspeak->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
@@ -251,8 +254,6 @@ void Dashboard::plot(int x_clockwise, int x_anticlockwise, int y_clockwise, int 
     ui->plot_y_axis->xAxis->setLabel("ROBOT Y AXIS");
     ui->plot_y_axis->replot();
     ui->plot_y_axis->update();
-
-
 }
 
 Dashboard::~Dashboard()
