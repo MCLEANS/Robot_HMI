@@ -2,7 +2,7 @@
 #include "ui_login.h"
 
 #include <QMessageBox>
-#include <QDesktopWidget>
+#include <QScreen>
 
 LogIn::LogIn(QWidget *parent)
     : QMainWindow(parent)
@@ -33,13 +33,15 @@ void LogIn::on_pushButton_login_clicked()
         if((ui->lineEdit_username->text() == USERNAME) && (ui->lineEdit_password->text() == PASSWORD)){
             hide();
             dashboard = new Dashboard(this);
-            QDesktopWidget *desktop = QApplication::desktop();
+            QScreen *desktop = QApplication::primaryScreen();
 
             int WIDTH = 820;
             int HEIGHT = 480;
 
-            int screenWidth = desktop->width();
-            int screenHeight = desktop->height();
+            QRect screen_geometry = desktop->geometry();
+
+            int screenWidth = screen_geometry.width();
+            int screenHeight = screen_geometry.height();
 
             int x = (screenWidth - WIDTH) / 2;
             int y = (screenHeight - HEIGHT) / 2;
